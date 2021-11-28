@@ -9,7 +9,7 @@ import "./Login.scss";
 export const Login: React.FC = () => {
     const [validated, setValidated] = useState(false);
     const [error, setError] = useState("");
-    const [loading, setLoading] = useState(false);
+    // const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
     const auth = useAuth();
@@ -27,14 +27,14 @@ export const Login: React.FC = () => {
 
         try {
             setError("");
-            setLoading(true);
+            // setLoading(true);
             await auth?.login(form.email.value, form.password.value);
             navigate("/");
         } catch {
             setError("Failed to create an account");
         }
 
-        setLoading(false)
+        // setLoading(false)
     };
 
 

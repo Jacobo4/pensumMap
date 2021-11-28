@@ -9,7 +9,7 @@ import "./SignUp.scss";
 export function SignUp() {
     const [validated, setValidated] = useState(false);
     const [error, setError] = useState("");
-    const [loading, setLoading] = useState(false);
+    // const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
     const auth = useAuth();
@@ -33,14 +33,14 @@ export function SignUp() {
 
         try {
             setError("");
-            setLoading(true);
+            // setLoading(true);
             await auth?.signup(form.email.value, form.password.value);
             navigate("/");
         } catch {
             setError("Failed to create an account");
         }
 
-        setLoading(false)
+        // setLoading(false)
     };
 
 
