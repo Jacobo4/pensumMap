@@ -1,10 +1,10 @@
 package EstructurasDeDatos.Colas;
 
-public class ColaEnlazada <T> implements Colas <T>{
-    private Nodo <T> cabeza;
-    private Nodo <T> cola;
+public class ColaEnlazada<T> implements Colas<T> {
+    private Nodo<T> cabeza;
+    private Nodo<T> cola;
 
-    public ColaEnlazada(){
+    public ColaEnlazada() {
         cabeza = cola = null;
     }
 
@@ -12,9 +12,9 @@ public class ColaEnlazada <T> implements Colas <T>{
     public boolean vacio() {
         // TODO Auto-generated method stub
         if (cabeza == null)
-        return true;
-        else 
-        return false;
+            return true;
+        else
+            return false;
     }
 
     @Override
@@ -44,6 +44,7 @@ public class ColaEnlazada <T> implements Colas <T>{
         else
             cola.setSig(nuevo);
         cola = nuevo;
+        // System.out.println("La cola es: "+cola.getDato());
     }
 
     @Override
@@ -51,9 +52,9 @@ public class ColaEnlazada <T> implements Colas <T>{
         // TODO Auto-generated method stub
         if (cabeza == null)
             return null;
-        Nodo <T> aux = cabeza;
+        Nodo<T> aux = cabeza;
         cabeza = cabeza.getSig();
-        if(vacio())
+        if (vacio())
             cola = null;
         return aux.getDato();
     }

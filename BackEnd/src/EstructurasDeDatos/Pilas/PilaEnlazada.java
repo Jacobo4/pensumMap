@@ -1,10 +1,10 @@
 package EstructurasDeDatos.Pilas;
 
-import EstructurasDeDatos.Listas.RCurricularLEnlazada;
+import EstructurasDeDatos.Listas.ListaEnlazada;
 
-public class PilaEnlazada <T> extends RCurricularLEnlazada <T> implements Pilas <T> {
+public class PilaEnlazada<T> extends ListaEnlazada<T> implements Pilas<T> {
 
-    public PilaEnlazada(){
+    public PilaEnlazada() {
         super();
     }
 
@@ -19,7 +19,7 @@ public class PilaEnlazada <T> extends RCurricularLEnlazada <T> implements Pilas 
     @Override
     public void push(T dato) {
         // TODO Auto-generated method stub
-        insertar(dato,0);
+        insertar(dato, 0);
     }
 
     @Override

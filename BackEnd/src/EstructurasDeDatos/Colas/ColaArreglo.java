@@ -1,20 +1,20 @@
 package EstructurasDeDatos.Colas;
 
-public class ColaArreglo <T> implements Colas<T> {
+public class ColaArreglo<T> implements Colas<T> {
     int ICabeza;
     int ICola;
     T[] datos;
 
-    public ColaArreglo(int n){
+    public ColaArreglo(int n) {
         if (n > 1)
-            datos = (T [])new Object [n];
+            datos = (T[]) new Object[n];
         else
-            datos = (T [])new Object [10];
+            datos = (T[]) new Object[10];
         ICabeza = 0;
         ICola = -1;
     }
 
-    public ColaArreglo(){
+    public ColaArreglo() {
         this(10);
     }
 
@@ -22,9 +22,9 @@ public class ColaArreglo <T> implements Colas<T> {
     public boolean vacio() {
         // TODO Auto-generated method stub
         if (ICabeza > ICola)
-        return true;
-        else 
-        return false;
+            return true;
+        else
+            return false;
     }
 
     @Override
@@ -48,19 +48,19 @@ public class ColaArreglo <T> implements Colas<T> {
     @Override
     public void put(T dato) {
         // TODO Auto-generated method stub
-        if (ICola+1 >= datos.length){
-            T [] aux = datos;
-            datos = (T[]) new Object[2*datos.length];
+        if (ICola + 1 >= datos.length) {
+            T[] aux = datos;
+            datos = (T[]) new Object[2 * datos.length];
             System.arraycopy(aux, 0, datos, 0, ICola);
         }
-        if (vacio()){
+        if (vacio()) {
             datos[ICabeza] = dato;
             ICola++;
-        }else{
-            datos[ICola+1] = dato;
+        } else {
+            datos[ICola + 1] = dato;
             ICola++;
         }
-        
+
     }
 
     @Override
@@ -69,11 +69,11 @@ public class ColaArreglo <T> implements Colas<T> {
         if (vacio())
             return null;
         T aux = datos[ICabeza];
-        for (int i = 0; i < ICola;i++)
-            datos[i] = datos[i+1];
-        
+        for (int i = 0; i < ICola; i++)
+            datos[i] = datos[i + 1];
+
         ICola--;
         return aux;
     }
-    
+
 }
