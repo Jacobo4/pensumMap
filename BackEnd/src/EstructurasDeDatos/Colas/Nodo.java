@@ -1,6 +1,6 @@
 package EstructurasDeDatos.Colas;
 
-public class Nodo<T> {
+public class Nodo <T> {
     private T dato;
     private Nodo<T> sig;
 
