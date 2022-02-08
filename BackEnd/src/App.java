@@ -1,139 +1,73 @@
-import EstructurasDeDatos.Colas.ColaArreglo;
-import EstructurasDeDatos.Colas.ColaEnlazada;
-import EstructurasDeDatos.Listas.ListaArreglo;
-import EstructurasDeDatos.Listas.ListaEnlazada;
-import EstructurasDeDatos.Pilas.PilaArreglo;
-import EstructurasDeDatos.Pilas.PilaEnlazada;
+import EstructurasDeDatos.TablasHash.TablaHashCerrada.TablaHashDirCerrado;
+import TablaHashAbierta.TablaHashAbierta;
 
 public class App {
     public static void main(String[] args) throws Exception {
+        TablaHashDirCerrado <String>tabla = new TablaHashDirCerrado<>();
+        TablaHashAbierta <String>tabla1 = new TablaHashAbierta<>();
+        
+        for (int k = 10 ; k <= 10000000 ; k= k*10){
+            String materias [] = new String[k];
+            materias = crearMaterias(k);
+            System.out.println(k);
+            long inicio = System.currentTimeMillis();
+            for (int i  = 0 ;  i < k ; i ++){
+                tabla.insertar(materias[i], materias[i]);
+            }
+            long fin = System.currentTimeMillis();
+            double tiempo1 = (double) (fin - inicio) / 1000;
 
-        //Crea dos rutas curriculares de tipo cola implementadas con arreglo y enlazada
-        RutaCurricularArreglo<Materia> ruta1 = new RutaCurricularArreglo<>();
-        RutaCurricularEnlazada<Materia> ruta2 = new RutaCurricularEnlazada<>();
 
-        guardarMateriasRuta(ruta1, ruta2);
+            inicio = System.currentTimeMillis();
+            for (int i  = 0 ;  i < k ; i ++){
+                tabla1.insertar(materias[i], materias[i]);
+            }
+            fin = System.currentTimeMillis();
+            double tiempo2 = (double) (fin - inicio) / 1000;
+            
+            System.out.println(tiempo1+" "+tiempo2);
 
-        //Crea dos listas implementadas con arreglo y enlazada
-        ListaArreglo<RutaCurricularArreglo> listaA = new ListaArreglo<>();
-        ListaEnlazada<RutaCurricularArreglo> listaE = new ListaEnlazada<>();
+            inicio = System.currentTimeMillis();
+            for (int i  = 0 ;  i < k ; i ++){
+                tabla.buscar(materias[i]);
+            }
+            fin = System.currentTimeMillis();
+            tiempo1 = (double) (fin - inicio) / 1000;
 
-        guardarRutas(listaA, listaE);
+            inicio = System.currentTimeMillis();
+            for (int i  = 0 ;  i < k ; i ++){
+                tabla1.buscar(materias[i]);
+            }
 
-        //Crea dos pilas implementadas con arreglo y enlazada
-        PilaArreglo<Materia> pilaA = new PilaArreglo<Materia>();
-        PilaEnlazada<Materia> pilaE = new PilaEnlazada<Materia>();
+            fin = System.currentTimeMillis();
+            tiempo2 = (double) (fin - inicio) / 1000;
 
-        insertarDatosBackUp(pilaA, pilaE);
-    }
+            System.out.println(tiempo1+" "+tiempo2);
 
-    //Guarda las materias en una ruta curricular. La ruta curricular es de tipo cola
-    public static void guardarMateriasRuta(RutaCurricularArreglo<Materia> ruta1,RutaCurricularEnlazada<Materia> ruta2) {
-        for (int i = 10000; i < 10000000; i = i *5) {
-            insertarColaArreglo(ruta1, i);
-        }
-        System.out.println();
-        for (int i = 10000; i < 10000000; i = i *5) {
-            insertarColaEnlazada(ruta2, i);
-        }
-        System.out.println();
-    }
-    //Ingresa las materias en una Cola implementada con arreglos
-    private static void insertarColaArreglo(RutaCurricularArreglo<Materia> colaA, int i) {
-        long inicio = System.currentTimeMillis();
-        for (int j = 0; j < i; j++) {
-            colaA.put(new Materia(5, "Materia" + String.valueOf(i + 1), 1, 'a'));
-        }
-        long fin = System.currentTimeMillis();
-        double tiempo = (double) (fin - inicio) / 1000;
-        System.out.println("Para " + i + " materias la cola implementada con arreglos gasta: " + tiempo);
-        //System.out.println(i+ " " + tiempo);
-        colaA = new RutaCurricularArreglo<>();
+            inicio = System.currentTimeMillis();
+            for (int i  = 0 ;  i < k ; i ++){
+                tabla.eliminar(materias[i], materias[i]);
+            }
+            fin = System.currentTimeMillis();
+            tiempo1 = (double) (fin - inicio) / 1000;
 
-    }
-    //Ingresa las materias en una Cola enlazada
-    private static void insertarColaEnlazada(RutaCurricularEnlazada<Materia> colaE, int i) {
-        long inicio = System.currentTimeMillis();
-        for (int j = 0; j < i; j++) {
-            colaE.put(new Materia(5, "Materia" + String.valueOf(i + 1), 1, 'a'));
-        }
-        long fin = System.currentTimeMillis();
-        double tiempo = (double) (fin - inicio) / 1000;
-        System.out.println("Para " + i + " materias la cola enlazada gasta: " + tiempo);
-        //System.out.println(i+ " " + tiempo);
-        colaE = new RutaCurricularEnlazada<>();
+            inicio = System.currentTimeMillis();
+            for (int i  = 0 ;  i < k ; i ++){
+                tabla1.eliminar(materias[i], materias[i]);
+            }
+            fin = System.currentTimeMillis();
+            tiempo2 = (double) (fin - inicio) / 1000;
 
-    }
-
-    //Guarda rutas curriculares en una lista
-    public static void guardarRutas(ListaArreglo<RutaCurricularArreglo> listaA,ListaEnlazada<RutaCurricularArreglo> listaE) {
-        int index = 0;
-        for (int i = 10000; i < 100000000; i = i *10) {
-            insertarListaArreglo(listaA, i, index);
-        }
-        System.out.println();
-        for (int i = 10000; i < 100000000; i = i * 5) {
-            insertarListaEnlazada(listaE, i, index);
+            System.out.println(tiempo1+" "+tiempo2);
         }
     }
-    //Ingresa las rutas curriculares en una Lista implementada con arreglos
-    public static void insertarListaArreglo(ListaArreglo<RutaCurricularArreglo> listaA, int i, int index) {
-        long inicio = System.currentTimeMillis();
-        for (int j = 0; j < i; j++) {
-            listaA.insertar(new RutaCurricularArreglo(), index);
+    public static String[] crearMaterias(int tamano){
+        String  materias [] = new String [tamano];
+        for (int i  = 0 ;  i < tamano ; i ++){
+            String m ="ayer"+i;
+            materias[i] = m;
         }
-        long fin = System.currentTimeMillis();
-        double tiempo = (double) (fin - inicio) / 1000;
-        System.out.println("Para " + i + " datos la lista implementada con arreglos gasta: " + tiempo);
-        //System.out.println(i+ " " + tiempo);
-        listaA = new ListaArreglo<>();
+        return materias;
 
-    }
-    //Ingresa las rutas curriculares en una Lista enlazada
-    public static void insertarListaEnlazada(ListaEnlazada<RutaCurricularArreglo> listaE, int i, int index) {
-        long inicio = System.currentTimeMillis();
-        for (int j = 0; j < i; j++) {
-            listaE.insertar(new RutaCurricularArreglo(), index);
-        }
-        long fin = System.currentTimeMillis();
-        double tiempo = (double) (fin - inicio) / 1000;
-        System.out.println("Para " + i + " datos la lista enlazada gasta: " + tiempo);
-        //System.out.println(i+ " " + tiempo);
-        listaE = new ListaEnlazada<>();
-    }
-
-    //Hace la accion de deshacer la operacion de ingresar una materia en una ruta curricular (ctrl z)
-    public static void insertarDatosBackUp(PilaArreglo<Materia> pilaA, PilaEnlazada<Materia> pilaE) {
-        for (int i = 10000; i < 10000000; i = i * 5) {
-            insertarPilaArreglo(pilaA, i);
-        }
-        System.out.println();
-        for (int i = 10000; i < 10000000; i = i * 5) {
-            insertarPilaEnlazada(pilaE, i);
-        }
-    }
-    //Ingresa las materias en una Pila implementada con arreglos
-    private static void insertarPilaArreglo(PilaArreglo<Materia> pilaA, int i) {
-        long inicio = System.currentTimeMillis();
-        for (int j = 0; j < i; j++) {
-            pilaA.push(new Materia(5, "Materia" + String.valueOf(i + 1), 1, 'a'));
-        }
-        long fin = System.currentTimeMillis();
-        double tiempo = (double) (fin - inicio) / 1000;
-        System.out.println("Para " + i + " datos la pila implementada con arreglos gasta: " + tiempo);
-        //System.out.println(i+ " " + tiempo);
-        pilaA = new PilaArreglo<>();
-    }
-    //Ingresa las materias en una Pila enlazada
-    private static void insertarPilaEnlazada(PilaEnlazada<Materia> pilaE, int i) {
-        long inicio = System.currentTimeMillis();
-        for (int j = 0; j < i; j++) {
-            pilaE.push(new Materia(5, "Materia" + String.valueOf(i + 1), 1, 'a'));
-        }
-        long fin = System.currentTimeMillis();
-        double tiempo = (double) (fin - inicio) / 1000;
-        System.out.println("Para " + i + " datos la pila enlazada gasta: " + tiempo);
-        //System.out.println(i+ " " + tiempo);
-        pilaE = new PilaEnlazada<>();
     }
 }
