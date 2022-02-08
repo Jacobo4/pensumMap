@@ -1,4 +1,4 @@
-package TablaHashAbierta;
+package EstructurasDeDatos.TablasHash.TablaHashAbierta;
 
 public interface TablaHash <T> {
     void insertar(String llave,T dato);

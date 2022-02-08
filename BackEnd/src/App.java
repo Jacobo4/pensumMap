@@ -1,5 +1,5 @@
+import EstructurasDeDatos.TablasHash.TablaHashAbierta.TablaHashAbierta;
 import EstructurasDeDatos.TablasHash.TablaHashCerrada.TablaHashDirCerrado;
-import TablaHashAbierta.TablaHashAbierta;
 
 public class App {
     public static void main(String[] args) throws Exception {

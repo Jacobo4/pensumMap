@@ -1,4 +1,4 @@
-package TablaHashAbierta;
+package EstructurasDeDatos.TablasHash.TablaHashAbierta;
 
 public class TablaHashAbierta<T> implements TablaHash <T>{
     private int tamano;
